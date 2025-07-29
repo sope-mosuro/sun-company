@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Agent } from './agent.entity';
 import { Repository } from 'typeorm';
 import { UsersService } from '../users/users.service';
+import { AgentDto } from './dto/agent.dto';
 
 @Injectable()
 export class AgentsService {
@@ -19,11 +20,20 @@ export class AgentsService {
     return this.agentRepo.save(agent);
   }
 
-  async getAgentsBySalesRep(salesRepId: number) {
-    return this.agentRepo.find({
-      where: { salesRep: { id: salesRepId } },
-      relations: ['salesRep'],
-    });
+  async getAgentsBySalesRep(salesRepId: number): Promise<AgentDto[]> {
+  const agents = await this.agentRepo.find({
+    where: { salesRep: { id: salesRepId } },
+    relations: ['salesRep'],
+  });
+
+  return agents.map(agent => ({
+    id: agent.id,
+    name: agent.name,
+    salesRep: {
+      id: agent.salesRep.id,
+      name: agent.salesRep.name,
+    },
+  }));
   }
 
   
