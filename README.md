@@ -2,7 +2,7 @@
   <img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" />
 </p>
 
-# Sun Harvesters CRM
+# Sun Company CRM
 
 A CRM system for managing sales, agents, commissions, and users, built with [NestJS](https://nestjs.com/) and [TypeORM](https://typeorm.io/).
 
