@@ -13,7 +13,7 @@ export class AgentsService {
   ) {}
 
   async createAgent(name: string, salesRepId: number) {
-    const salesRep = await this.usersService.findSalesRepById(salesRepId);
+    const salesRep = await this.usersService.findUserById(salesRepId);
     if (!salesRep) throw new NotFoundException('Sales Rep not found');
 
     const agent = this.agentRepo.create({ name, salesRep });

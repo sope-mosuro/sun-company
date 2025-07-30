@@ -22,6 +22,9 @@ export class RolesGuard implements CanActivate {
      // Normalize both sides to lowercase
   const userRole = user?.role?.toLowerCase();
   const normalizedRoles = requiredRoles.map(role => role.toLowerCase());
+   if (userRole === 'admin') {
+    return normalizedRoles.includes('admin') || normalizedRoles.includes('sales_rep');
+  }
     return normalizedRoles.includes(userRole);
   }
 }

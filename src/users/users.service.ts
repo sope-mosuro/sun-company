@@ -19,11 +19,11 @@ export class UsersService {
     return this.userRepo.save(user);
   }
 
-  async findSalesRepById(id: number): Promise<User | null> {
+  async findUserById(id: number): Promise<User | null> {
   return this.userRepo.findOne({
     where: {
       id,
-      role: UserRole.SALES_REP,
+      // role: UserRole.SALES_REP,
     },
   });
 }

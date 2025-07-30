@@ -19,8 +19,8 @@ export class AgentsController {
 
   @Post('create')
   @Roles('admin', 'sales_rep')
-  async createAgent(@Body('name') name: string, @Request() req) {
-    const salesRepId = req.user.id;
+  async createAgent(@Body('name') name: string, @CurrentUser() user) {
+    const salesRepId = user.id;
     return this.agentsService.createAgent(name, salesRepId);
   }
 
@@ -31,6 +31,7 @@ export class AgentsController {
   }
   
   @Get('my-agents')
+  @Roles('admin', 'sales_rep')
 async getMyAgents(@CurrentUser() user: { id: number }) {
   return this.agentsService.getAgentsBySalesRep(user.id);
 }
