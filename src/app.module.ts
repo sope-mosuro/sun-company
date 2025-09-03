@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { Agent } from 'http';
 import { AgentsModule } from './agents/agents.module';
 import { SalesModule } from './sales/sale.module'; // Import SaleModule
+import { ReportsModule } from './reports/reports.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }), // to access env variables
@@ -16,7 +17,7 @@ import { SalesModule } from './sales/sale.module'; // Import SaleModule
       url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: true, // Set to false in production!
-    }), AuthModule, UsersModule, AgentsModule,SalesModule, // Ensure SaleModule is imported
+    }), AuthModule, UsersModule, AgentsModule,SalesModule, ReportsModule, // Ensure SaleModule is imported
   ],
   controllers: [AppController],
   providers: [AppService],
